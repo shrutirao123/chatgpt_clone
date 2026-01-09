@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <style>
+        :root {
+            /* --- NEW PURPLE THEME --- */
+            --bg-dark-primary: #0d0d12;
+            --bg-dark-secondary: #1a1a24;
+            --text-light: #EAEAEA;
+            --text-medium: #9ca3af;
+            
+            --accent-color: #8b5cf6; /* Violet */
+            --accent-hover: #7c3aed;
+            
+            --input-bg: #232330;
+            --border-color: #353545;
+            --border-radius: 14px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark-primary);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image: radial-gradient(circle at top right, #1f1a36 0%, transparent 40%),
+                              radial-gradient(circle at bottom left, #12101f 0%, transparent 40%);
+        }
+
+        .container {
+            background: var(--bg-dark-secondary);
+            padding: 45px 40px;
+            width: 100%;
+            max-width: 440px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .sg-icon {
+            width: 70px;
+            height: 70px;
+            filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.3));
+            transition: 0.4s ease;
+        }
+
+        .sg-icon:hover {
+            filter: drop-shadow(0 0 25px rgba(139, 92, 246, 0.6));
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            margin-top: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 3px solid #ef4444;
+            margin-bottom: 24px;
+            font-size: 13px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 13px;
+            color: var(--text-medium);
+            font-weight: 600;
+            margin-left: 2px;
+        }
+
+        input {
+            padding: 16px;
+            padding-right: 50px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--input-bg);
+            color: var(--text-light);
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        input:focus {
+            border-color: var(--accent-color);
+            background-color: #2a2a35;
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+            outline: none;
+        }
+
+        /* Eye SVG Button */
+        .eye-btn {
+            position: absolute;
+            right: 14px;
+            top: 48px; /* Adjusted */
+            transform: translateY(-50%);
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            color: var(--text-medium);
+        }
+
+        .eye-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--accent-color);
+        }
+
+        .eye-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+        }
+
+        button {
+            padding: 16px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3);
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 20px -3px rgba(139, 92, 246, 0.4);
+            filter: brightness(1.1);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .footer-text {
+            margin-top: 30px;
+            text-align: center;
+            color: var(--text-medium);
+            font-size: 14px;
+        }
+
+        .footer-text a {
+            color: var(--accent-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-text a:hover {
+            color: #c4b5fd;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 30px 20px; }
+            h2 { font-size: 24px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+            <svg class="sg-icon" viewBox="0 0 100 100">
+                <defs>
+                    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#8b5cf6" stop-opacity="1" />
+                        <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0" />
+                    </radialGradient>
+                </defs>
+                <circle cx="50" cy="50" r="46" stroke="#8b5cf6" stroke-width="3"></circle>
+                <circle cx="50" cy="50" r="46" fill="url(#glowGrad)" opacity="0.3"></circle>
+                <text x="50%" y="56%" text-anchor="middle" fill="#8b5cf6" font-size="33" font-weight="700" font-family="Arial, sans-serif">SG</text>
+            </svg>
+            <span class="logo-text">SSSL GPT</span>
+        </div>
+
+        <h2>Welcome Back!</h2>
+
+        {% if error %}
+        <div class="error">⚠️ {{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter your username" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <span class="eye-btn" id="togglePass">
+                    <svg id="eyeOpen" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <svg id="eyeClosed" style="display:none;" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M17.94 17.94A10.93 10.93 0 0 1 12 20c-7 0-11-8-11-8a21.77 21.77 0 0 1 5.06-6.94M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+                        <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
+                </span>
+            </div>
+
+            <button type="submit">Login to Account</button>
+        </form>
+
+        <p class="footer-text">
+            Don't have an account? <a href="/register/">Create One</a>
+        </p>
+
+    </div>
+
+    <script>
+        const pass = document.getElementById("password");
+        const toggle = document.getElementById("togglePass");
+        const eyeOpen = document.getElementById("eyeOpen");
+        const eyeClosed = document.getElementById("eyeClosed");
+
+        toggle.addEventListener("click", () => {
+            const show = pass.type === "password";
+            pass.type = show ? "text" : "password";
+            eyeOpen.style.display = show ? "none" : "block";
+            eyeClosed.style.display = show ? "block" : "none";
+        });
+    </script>
+
+</body>
+</html>
