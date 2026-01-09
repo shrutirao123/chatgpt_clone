@@ -1,0 +1,14 @@
+Django>=4.0
+djangorestframework
+requests
+Pillow
+numpy
+pandas
+faiss-cpu
+sentence-transformers
+PyPDF2
+python-docx
+python-pptx
+openpyxl
+django-redis
+djangorestframework-simplejwt
