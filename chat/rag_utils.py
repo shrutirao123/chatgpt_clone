@@ -131,4 +131,3 @@ def delete_index(conversation_id):
         if os.path.exists(path):
             os.remove(path)
     print(f"🗑️ Deleted FAISS memory for conversation {conversation_id}")
-

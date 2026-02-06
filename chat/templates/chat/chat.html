@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -738,9 +739,9 @@ function preprocessMarkdown(text) {
             // SAFE HEADING SPACING
             fixed = fixed.replace(/([^\n])(\s*#{1,6}\s)/g, "$1\n\n$2");
 
-            // CODE BLOCK FIXES
-            fixed = fixed.replace(/([^\n])()/g, "$1\n\n$2");
-            fixed = fixed.replace(/()([^\n])/g, "$1\n\n$2");
+            // // CODE BLOCK FIXES
+            // fixed = fixed.replace(/([^\n])()/g, "$1\n\n$2");
+            // fixed = fixed.replace(/()([^\n])/g, "$1\n\n$2");
 
             // Convert any # heading → ####
             fixed = fixed.replace(/^\s*#{1,6}\s*(.+)$/gm, "#### $1");
